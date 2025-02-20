@@ -17,22 +17,6 @@ const loadCategories=()=>{
     .catch((error)=>console.log(error));
 }
 
-//displayCategories
-
-const displayCategories=(categories)=>{
-    categories.forEach((item) => {
-        // console.log(item)
-        const categoryContainer = document.getElementById('categories');
-        const button = document.createElement("button");
-        button.classList="btn border border-[#ff405a]";
-        button.innerText=item.category;
-
-        categoryContainer.append(button)
-    });
-}
-
-
-
 
 //create loadVideos
 
@@ -43,12 +27,43 @@ const loadVideos=()=>{
     .catch((error)=>console.log(error))
 }
 
+//create loadCategoriesVideo
+const loadCategoriesVideo=(id)=>{
+    fetch(`https://openapi.programming-hero.com/api/phero-tube/category/${id}`)
+    .then( (res) => res.json())
+    .then((data)=>displayVideos(data.category))
+    .catch((error)=>console.log(error))
+}
+
+//displayCategories
+
+const displayCategories=(categories)=>{
+    const categoryContainer = document.getElementById("categories")
+    categories.forEach((item) => {
+        // console.log(item)
+       //create A button
+       const buttonContainer = document.createElement("div");
+       buttonContainer.innerHTML = `
+       <button onClick="loadCategoriesVideo( ${item.category_id})" class="btn border border-red-500">
+       ${item.category}
+       </button>
+       `
+
+
+        categoryContainer.append(buttonContainer)
+    });
+}
+
+
+
+
 //displayVideos
 
 const displayVideos=(videos)=>{
     const videoContainer = document.getElementById('videos');
+    videoContainer.innerHTML=""
     videos.forEach((video)=>{
-        console.log(video)
+        // console.log(video)
         const card = document.createElement("div");
         card.classList="card card-compact";
         card.innerHTML=`
