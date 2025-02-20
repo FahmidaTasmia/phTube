@@ -57,6 +57,11 @@ const displayVideos=(videos)=>{
              </div>
              <div>
              <h3 class="font-bold text-lg ">${video.title}</h3>
+             <div class="flex gap-4">
+             <p>${video.authors[0].profile_name}</p>
+             ${video.authors[0].verified === true ? `<img class="h-5 w-5 rounded-full object-cover" 
+                src= "https://img.icons8.com/?size=96&id=D9RtvkuOe31p&format=png" />` : ""}
+             </div>
              </div>
             
         </div>
