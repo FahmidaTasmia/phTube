@@ -54,14 +54,20 @@ const displayCategories=(categories)=>{
     });
 }
 
-
-
-
 //displayVideos
 
 const displayVideos=(videos)=>{
     const videoContainer = document.getElementById('videos');
-    videoContainer.innerHTML=""
+    videoContainer.innerHTML="";
+    if(videos.length === 0){
+        videoContainer.classList.remove("grid");
+        videoContainer.innerHTML=`
+        <div class="min-h-[300px] flex flex-col gap-8 justify-center items-center">
+            <img src="assets/Icon.png"/>
+            <h2 class="text-4xl font-extrabold text-center">No Content In this Category</h2>
+        </div>
+        `
+    }
     videos.forEach((video)=>{
         // console.log(video)
         const card = document.createElement("div");
